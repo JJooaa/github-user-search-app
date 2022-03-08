@@ -16,8 +16,8 @@ module.exports = {
                 darkBlue: "#1E2A47", // card background
             },
             fontFamily: {
-                mono: ["Space Mono", "sans-serif"]
-            }
+                mono: ["Space Mono", "sans-serif"],
+            },
         },
     },
     plugins: [],
