@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import search from "./assets/icon-search.svg";
+import search from "../assets/icon-search.svg";
+import PropTypes from "prop-types";
 
 const SearchBar = ({ fetchUser }) => {
     const [input, setInput] = useState("");
-    console.log(input);
     return (
         <div className="w-full rounded-2xl bg-white justify-between dark:bg-darkBlue flex items-center mt-6 px-6 h-[69px] drop-shadow-lg">
             <div className="flex">
@@ -24,6 +24,10 @@ const SearchBar = ({ fetchUser }) => {
             </button>
         </div>
     );
+};
+
+SearchBar.propTypes = {
+    fetchUser: PropTypes.func,
 };
 
 export default SearchBar;

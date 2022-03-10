@@ -6,14 +6,14 @@ import { ReactComponent as location } from "./assets/icon-location.svg";
 import { ReactComponent as twitter } from "./assets/icon-twitter.svg";
 import { ReactComponent as website } from "./assets/icon-website.svg";
 import axios from "axios";
-import Links from "./links";
-import Header from "./header";
-import SearchBar from "./searchbar";
-import Profile from "./profile";
-import Stats from "./stats";
+import Links from "./components/links";
+import Header from "./components/header";
+import SearchBar from "./components/searchbar";
+import Profile from "./components/profile";
+import Stats from "./components/stats";
 
 function App() {
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const [currentUser, setCurrentUser] = useState();
     const [isFailed, setIsFailed] = useState(false);
     // sm breakpoint : 640px; -> phone
@@ -28,7 +28,6 @@ function App() {
             removeUnnecessaryProperties(res);
         } catch (error) {
             setIsFailed(true);
-            console.log(error);
         }
     };
 
@@ -41,25 +40,31 @@ function App() {
                 avatar: res["avatar_url"],
                 bio: res["bio"],
             },
+            stats: [
+                { Repos: res["public_repos"] },
+                { Followers: res["followers"] },
+                { Following: res["following"] },
+            ],
             links: [
                 { location: res["location"], image: location },
                 { blog: res["blog"], image: website },
                 { twitter: res["twitter"], image: twitter },
                 { company: res["company"], image: company },
             ],
-            stats: [
-                { Repos: res["public_repos"] },
-                { Followers: res["followers"] },
-                { Following: res["following"] },
-            ],
         });
     };
 
     useEffect(() => {
+        const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
+        if (prefersDark) {
+            setIsDarkMode(true);
+        }
         const fetchCreator = async () => {
             try {
                 const user = await axios.get(
-                    `https://api.github.com/users/octocat`
+                    `https://api.github.com/users/JJooaa`
                 );
                 const res = user.data;
                 removeUnnecessaryProperties(res);
@@ -70,7 +75,6 @@ function App() {
         fetchCreator();
     }, []);
 
-    console.log(currentUser);
     if (!currentUser) {
         return <div>Loading...</div>;
     }
@@ -79,12 +83,21 @@ function App() {
     const currentText = isDarkMode ? "LIGHT" : "DARK";
 
     return (
+        // Window Screen
         <div className="w-screen h-screen bg-lightwhite dark:bg-darkBlack flex items-center justify-center">
+            {/* Container for content */}
             <div className="container max-w-[730px] mx-6 flex-col">
-                <Header currentIcon={currentIcon} currentText={currentText} />
+                <Header
+                    currentIcon={currentIcon}
+                    currentText={currentText}
+                    isDarkMode={isDarkMode}
+                />
                 <SearchBar fetchUser={fetchUser} />
+                {/* Container for profile */}
+
                 <div className="bg-white dark:bg-darkBlue w-full mt-6 rounded-2xl drop-shadow-lg flex-col">
                     <Profile user={currentUser.user} />
+                    {/* Container for bio, numbers and links */}
                     <div className="px-6 py-4 gap-6 flex flex-col">
                         <p className="text-[13px] text-lightblue dark:text-darkwhite">
                             {currentUser.user.bio}

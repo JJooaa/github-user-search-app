@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Header = ({ currentText, currentIcon }) => {
     return (
@@ -13,6 +14,11 @@ const Header = ({ currentText, currentIcon }) => {
             </div>
         </div>
     );
+};
+
+Header.propTypes = {
+    currentText: PropTypes.string,
+    currentIcon: PropTypes.string,
 };
 
 export default Header;
