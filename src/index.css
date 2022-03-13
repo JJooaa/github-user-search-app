@@ -4,29 +4,31 @@
 @tailwind components;
 @tailwind utilities;
 
-// Add small (sm) breakpoint to all font sizes this means when it breaks over the sm limit it takes affect
-// Make all pixels for small devices first and then add breakpoints for sm -> onwards
 html,
 body {
     @apply p-0 m-0 overflow-hidden w-screen h-screen bg-none font-mono;
 }
 
 h1 {
-    @apply font-bold leading-[38px] text-[26px];
+    @apply font-bold leading-[38px] text-[16px] sm:text-[26px];
 }
 
 h2 {
-    @apply font-bold leading-[33px] text-[22px];
+    @apply font-bold leading-[33px] text-[16px] sm:text-[22px];
 }
 
 h3 {
-    @apply font-normal leading-[24px] text-[16px];
+    @apply font-normal leading-[24px] text-[13px] sm:text-[16px];
 }
 
 h4 {
-    @apply font-normal leading-[20px] text-[13px];
+    @apply font-normal leading-[20px] text-[11px] sm:text-[13px];
 }
 
 p {
-    @apply font-normal leading-[25px] text-[15px];
+    @apply font-normal leading-[25px] text-[13px] sm:text-[15px];
+}
+
+input::placeholder {
+    @apply text-[13px] sm:text-[18px]
 }

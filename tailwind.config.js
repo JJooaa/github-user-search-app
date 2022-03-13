@@ -2,6 +2,9 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
         extend: {
+            screens: {
+                "sm": "540px",
+            },
             colors: {
                 // Light mode settings
                 blue: "#0079FF", // for both light and dark // button, search img, githubname

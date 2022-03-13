@@ -6,21 +6,21 @@ const SearchBar = ({ fetchUser }) => {
     const [input, setInput] = useState("");
     return (
         <div className="w-full rounded-2xl bg-white justify-between dark:bg-darkBlue flex items-center mt-6 px-6 h-[69px] drop-shadow-lg">
-            <div className="flex">
+            <div className="flex flex-grow">
                 <img src={search} alt="search icon" />
                 <input
-                    placeholder="Search GitHub user"
+                    placeholder="Search GitHub user..."
                     name="input"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="ml-4 bg-transparent dark:text-darkwhite outline-none w-auto text-black"
+                    className="ml-4 bg-transparent dark:text-darkwhite overflow-hidden outline-none flex-grow text-black"
                 />
             </div>
             <button
                 onClick={() => fetchUser(input)}
-                className="text-white bg-blue min-h-fullw px-2 sm:px-6 h-[46px] rounded-xl"
+                className="text-white bg-blue px-2 sm:px-6 h-[46px] rounded-xl"
             >
-                Search
+                <p>Search</p>
             </button>
         </div>
     );
