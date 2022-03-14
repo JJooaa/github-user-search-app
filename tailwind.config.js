@@ -3,7 +3,7 @@ module.exports = {
     theme: {
         extend: {
             screens: {
-                "sm": "540px",
+                "sm": "470px",
             },
             colors: {
                 // Light mode settings

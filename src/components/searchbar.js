@@ -12,6 +12,7 @@ const SearchBar = ({ fetchUser }) => {
                     placeholder="Search GitHub user..."
                     name="input"
                     value={input}
+                    autoComplete="off"
                     onChange={(e) => setInput(e.target.value)}
                     className="ml-4 bg-transparent dark:text-darkwhite overflow-hidden outline-none flex-grow text-black"
                 />

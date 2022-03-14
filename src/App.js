@@ -99,7 +99,7 @@ function App() {
                     <Profile user={currentUser.user} />
                     {/* Container for bio, numbers and links */}
                     <div className="px-6 py-4 gap-6 flex flex-col">
-                        <p className="text-[13px] text-lightblue dark:text-darkwhite">
+                        <p className="text-lightblue dark:text-darkwhite">
                             {currentUser.user.bio}
                         </p>
                         <div className="flex justify-evenly text-center py-6 max-w-[480px] min-w-[249px] bg-lightwhite dark:bg-darkBlack rounded-3xl">
