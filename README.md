@@ -63,8 +63,8 @@ Using Tailwind CSS on this project really challenged me in new ways. It forced m
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Tailwind CSS](https://tailwindcss.com/) - All the documentation needed to start and develop with Tailwind CSS
+- [prop-types](https://www.npmjs.com/package/prop-types) - Type checking for react props
 
 ## Author
 
