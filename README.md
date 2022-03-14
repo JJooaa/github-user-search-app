@@ -61,6 +61,7 @@ Links.propTypes = {
 
 Using Tailwind CSS on this project really challenged me in new ways. It forced me to build the website from a "mobile first" standpoint. I will build all websites mobile first from now on.
 
+After experimenting with "prop-types", I think the logical decision would be to start Typescript on my next project
 ### Useful resources
 
 - [Tailwind CSS](https://tailwindcss.com/) - All the documentation needed to start and develop with Tailwind CSS
