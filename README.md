@@ -68,5 +68,5 @@ Using Tailwind CSS on this project really challenged me in new ways. It forced m
 
 ## Author
 
-- LinkedIn - [Joa Leitola](https://www.your-site.com)
-- Github - [JJooaa](https://www.frontendmentor.io/profile/yourusername)
+- LinkedIn - [Joa Leitola](https://www.linkedin.com/in/joa-leitola-478515212/)
+- Github - [JJooaa](https://github.com/JJooaa)
