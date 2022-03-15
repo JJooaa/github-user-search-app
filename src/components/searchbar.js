@@ -19,7 +19,7 @@ const SearchBar = ({ fetchUser }) => {
             </div>
             <button
                 onClick={() => fetchUser(input)}
-                className="text-white bg-blue px-2 sm:px-6 h-[46px] rounded-xl"
+                className="text-white bg-blue px-2 sm:px-6 h-[46px] hover:bg-[#60ABFF] rounded-xl"
             >
                 <p>Search</p>
             </button>
