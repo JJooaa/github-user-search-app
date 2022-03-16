@@ -41,6 +41,7 @@ Users should be able to:
 - Flexbox
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
+- [Jest](https://jestjs.io/) - JS testing library
 
 ### What I learned
 
