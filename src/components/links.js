@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const Links = ({ item, index, isDarkMode }) => {
+const Links = ({ item, index, theme }) => {
     const itemKey = Object.values(item)[0];
     const checkIfUndefined =
         itemKey === undefined || itemKey === null || itemKey === "" ? (
@@ -13,7 +13,7 @@ const Links = ({ item, index, isDarkMode }) => {
 
     return (
         <div className="flex gap-4" key={index}>
-            <item.image fill={isDarkMode ? "white" : "#4B6A9B"} />
+            <item.image fill={!theme ? "white" : "#4B6A9B"} />
             {checkIfUndefined}
         </div>
     );
@@ -22,7 +22,7 @@ const Links = ({ item, index, isDarkMode }) => {
 Links.propTypes = {
     item: PropTypes.object,
     index: PropTypes.number,
-    isDarkMode: PropTypes.bool,
+    theme: PropTypes.bool,
 };
 
 export default Links;
