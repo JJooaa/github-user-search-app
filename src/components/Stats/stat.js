@@ -1,6 +1,6 @@
 import React from "react";
 
-const Stats = ({ item, index }) => {
+const Stat = ({ item, index }) => {
     return (
         <div className="flex-col dark:text-darkwhite" key={index}>
             <h4>{Object.keys(item)}</h4>
@@ -9,4 +9,4 @@ const Stats = ({ item, index }) => {
     );
 };
 
-export default Stats;
+export default Stat;

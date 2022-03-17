@@ -1,11 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import sun from "../assets/icon-sun.svg";
+import moon from "../assets/icon-moon.svg";
 
-const Header = ({ currentText, currentIcon, theme, setTheme }) => {
-    // function to change the darkmode 
+const Header = ({ theme, setTheme }) => {
+    // function to change the darkmode
     const handleThemeClick = () => {
         theme === "dark" ? setTheme("light") : setTheme("dark");
     };
+
+    const currentIcon = theme === "dark" ? sun : moon;
+    const currentText = theme === "dark" ? "LIGHT" : "DARK";
+
     return (
         <div className="flex justify-between w-full items-center">
             <h1 className="text-black text-[26px] dark:text-darkwhite">

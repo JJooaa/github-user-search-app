@@ -1,18 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
-import sun from "./assets/icon-sun.svg";
-import moon from "./assets/icon-moon.svg";
 import { ReactComponent as company } from "./assets/icon-company.svg";
 import { ReactComponent as location } from "./assets/icon-location.svg";
 import { ReactComponent as twitter } from "./assets/icon-twitter.svg";
 import { ReactComponent as website } from "./assets/icon-website.svg";
-import axios from "axios";
-import Links from "./components/links";
 import Header from "./components/header";
 import SearchBar from "./components/searchbar";
 import Profile from "./components/profile";
-import Stats from "./components/stats";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useDarkTheme } from "./components/useDarkTheme";
+import StatList from "./components/Stats/statList";
+import LinkList from "./components/Links/linkList";
+import { useDarkTheme } from "./components/hooks/useDarkTheme";
+import { fetchUser } from "./util/api";
+import Layout from "./components/layout";
+import Bio from "./components/bio";
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
@@ -22,23 +22,16 @@ function App() {
 
     // for the first load we fetch "JJooaa" otherwise we fetch for input
     // fetch the user that the input value holds
-    const fetchUser = useCallback(
+    const getUser = useCallback(
         (input) => {
             // everytime we fetch we wanna set the current user to empty state to the loading indicator starts
             setCurrentUser(null);
-            setTimeout(async () => {
-                try {
-                    const user = await axios.get(
-                        `https://api.github.com/users/${
-                            isInitialLoad === false ? input : "JJooaa"
-                        }`
-                    );
-                    const res = user.data;
-                    removeUnnecessaryProperties(res);
-                } catch (error) {
-                    setIsFailed(true);
-                }
-            }, 2000);
+            fetchUser(
+                isInitialLoad,
+                input,
+                removeUnnecessaryProperties,
+                setIsFailed
+            );
         },
         [isInitialLoad]
     );
@@ -71,70 +64,37 @@ function App() {
         // is the client rendering for the first time
         if (isInitialLoad) {
             setIsInitialLoad(false);
-            fetchUser();
+            getUser();
         }
-    }, [isInitialLoad, fetchUser]);
+    }, [isInitialLoad, getUser]);
 
     // show the loading screen, and if no matches show error text
     if (currentUser === null) {
         return (
-            <main className={theme}>
-                <div className="w-screen h-screen bg-lightwhite dark:bg-darkBlack flex flex-col items-center justify-center">
-                    {!isFailed && <CircularProgress />}
-                    <p className="text-blue text-[20px] text-center">
-                        {isFailed === false
-                            ? "Loading user data..."
-                            : "User not found, try another one"}
-                    </p>
-                </div>
-            </main>
+            <Layout theme={theme}>
+                {!isFailed && <CircularProgress />}
+                <p className="text-blue text-[20px] text-center">
+                    {isFailed === false
+                        ? "Loading user data..."
+                        : "User not found, try another one"}
+                </p>
+            </Layout>
         );
     }
 
-    const currentIcon = theme === "dark" ? sun : moon;
-    const currentText = theme === "dark" ? "LIGHT" : "DARK";
-
     return (
-        // Window Screen
-        <main className={theme}>
-            <div className="w-screen h-screen bg-lightwhite dark:bg-darkBlack flex items-center justify-center">
-                {/* Container for content */}
-                <div className="container max-w-[730px] mx-6 flex-col">
-                    <Header
-                        currentIcon={currentIcon}
-                        currentText={currentText}
-                        theme={theme}
-                        setTheme={setTheme}
-                    />
-                    <SearchBar fetchUser={fetchUser} />
-                    {/* Container for profile */}
-
-                    <div className="bg-white dark:bg-darkBlue flex w-full mt-6 rounded-2xl drop-shadow-lg flex-col">
-                        <Profile user={currentUser.user} />
-                        {/* Container for bio, numbers and links */}
-                        <div className="px-6 py-4 gap-6 flex flex-col sm:self-end sm:mr-8 sm:max-w-[520px]">
-                            <p className="text-lightblue dark:text-darkwhite">
-                                {currentUser.user.bio}
-                            </p>
-                            <div className="flex justify-evenly text-center py-6 min-w-[249px] sm:w-[480px] bg-lightwhite dark:bg-darkBlack rounded-3xl">
-                                {currentUser.stats.map((item, index) => (
-                                    <Stats item={item} index={index} />
-                                ))}
-                            </div>
-                            <div className="flex flex-col sm:flex-row sm:w-[480px] sm:flex-wrap gap-4">
-                                {currentUser.links.map((item, index) => (
-                                    <Links
-                                        item={item}
-                                        index={index}
-                                        theme={theme}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+        <Layout currentUser={currentUser} isFailed={isFailed} theme={theme}>
+            <Header theme={theme} setTheme={setTheme} />
+            <SearchBar getUser={getUser} />
+            <div className="bg-white dark:bg-darkBlue flex w-full mt-6 rounded-2xl drop-shadow-lg flex-col">
+                <Profile user={currentUser.user} />
+                <div className="px-6 py-4 gap-6 flex flex-col sm:self-end sm:mr-8 sm:max-w-[520px]">
+                    <Bio currentUser={currentUser} />
+                    <StatList currentUser={currentUser} />
+                    <LinkList currentUser={currentUser} theme={theme} />
                 </div>
             </div>
-        </main>
+        </Layout>
     );
 }
 
