@@ -2,15 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Header = ({ currentText, currentIcon, theme, setTheme }) => {
+    // function to change the darkmode 
     const handleThemeClick = () => {
-        if (theme === "dark") {
-            localStorage.setItem("github-user-search-theme", "light");
-            setTheme("light");
-        }
-        if (theme === "light") {
-            localStorage.setItem("github-user-search-theme", "dark");
-            setTheme("dark");
-        }
+        theme === "dark" ? setTheme("light") : setTheme("dark");
     };
     return (
         <div className="flex justify-between w-full items-center">
