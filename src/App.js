@@ -13,6 +13,7 @@ import { useDarkTheme } from "./components/hooks/useDarkTheme";
 import { fetchUser } from "./util/api";
 import Layout from "./components/layout";
 import Bio from "./components/bio";
+import { ProfileDataWrapper, ProfileWrapper } from "./components/wrappers";
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
@@ -86,14 +87,14 @@ function App() {
         <Layout currentUser={currentUser} isFailed={isFailed} theme={theme}>
             <Header theme={theme} setTheme={setTheme} />
             <SearchBar getUser={getUser} />
-            <div className="bg-white dark:bg-darkBlue flex w-full mt-6 rounded-2xl drop-shadow-lg flex-col">
+            <ProfileWrapper>
                 <Profile user={currentUser.user} />
-                <div className="px-6 py-4 gap-6 flex flex-col sm:self-end sm:mr-8 sm:max-w-[520px]">
+                <ProfileDataWrapper>
                     <Bio currentUser={currentUser} />
                     <StatList currentUser={currentUser} />
                     <LinkList currentUser={currentUser} theme={theme} />
-                </div>
-            </div>
+                </ProfileDataWrapper>
+            </ProfileWrapper>
         </Layout>
     );
 }

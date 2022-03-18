@@ -7,7 +7,7 @@ const Profile = ({ user }) => {
     );
 
     return (
-        <div className="flex gap-7 items-center sm:max-w-none sm:ml-5 sm:gap-12 sm:items-center sm:pb-0 p-4">
+        <div className="flex gap-7 items-center sm:max-w-none sm:ml-5 sm:gap-12 sm:grow sm:items-center sm:pb-0 p-4">
             <img
                 src={user.avatar}
                 className="w-[70px] rounded-full sm:w-[117px]"
