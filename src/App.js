@@ -24,7 +24,8 @@ function App() {
     const [theme, setTheme] = useDarkTheme();
 
     const dispatch = useDispatch();
-
+    const error = useSelector((state) => state.currentUser.error);
+    const user = useSelector((state) => state.currentUser.value);
     // for the first load we fetch "JJooaa" otherwise we fetch for input
     // fetch the user that the input value holds
     const getUser = useCallback(
@@ -68,14 +69,16 @@ function App() {
     useEffect(() => {
         // is the client rendering for the first time
         if (isInitialLoad) {
-            dispatch(fetchPlaceholder());
+            setTimeout(() => {
+                dispatch(fetchPlaceholder("JJooaa", isInitialLoad));
+            }, 2000);
             setIsInitialLoad(false);
             getUser();
         }
-    }, [isInitialLoad, getUser]);
+    }, [isInitialLoad, getUser, dispatch]);
 
     // show the loading screen, and if no matches show error text
-    if (currentUser === null) {
+    if (!user) {
         return (
             <Layout theme={theme}>
                 {!isFailed && <CircularProgress />}
@@ -89,16 +92,16 @@ function App() {
     }
 
     return (
-        <Layout currentUser={currentUser} isFailed={isFailed} theme={theme}>
+        <Layout isFailed={isFailed} theme={theme}>
             <Header theme={theme} setTheme={setTheme} />
             <SearchBar getUser={getUser} />
             <ProfileWrapper>
-                <Profile user={currentUser.user} />
-                <ProfileDataWrapper>
+                <Profile />
+                {/* <ProfileDataWrapper>
                     <Bio currentUser={currentUser} />
                     <StatList currentUser={currentUser} />
                     <LinkList currentUser={currentUser} theme={theme} />
-                </ProfileDataWrapper>
+                </ProfileDataWrapper> */}
             </ProfileWrapper>
         </Layout>
     );

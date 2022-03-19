@@ -1,15 +1,19 @@
 import React from "react";
 import { DateTime } from "luxon";
+import { useSelector } from "react-redux";
 
-const Profile = ({ user }) => {
-    const slicedState = DateTime.fromISO(user.registerDate).toFormat(
+const Profile = () => {
+    const user = useSelector((state) => state.currentUser.value);
+    
+    const slicedState = DateTime.fromISO(user.created_at).toFormat(
         "dd LLL yyyy"
     );
+
 
     return (
         <div className="flex gap-7 items-center sm:max-w-none sm:ml-5 sm:gap-12 sm:grow sm:items-center sm:pb-0 p-4">
             <img
-                src={user.avatar}
+                src={user.avatar_url}
                 className="w-[70px] rounded-full sm:w-[117px]"
                 alt={user.name}
             />
