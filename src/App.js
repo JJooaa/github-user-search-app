@@ -14,12 +14,16 @@ import { fetchUser } from "./util/api";
 import Layout from "./components/layout";
 import Bio from "./components/bio";
 import { ProfileDataWrapper, ProfileWrapper } from "./components/wrappers";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser as fetchPlaceholder } from "./redux/currentUserSlice";
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
     const [isFailed, setIsFailed] = useState(false);
     const [theme, setTheme] = useDarkTheme();
+
+    const dispatch = useDispatch();
 
     // for the first load we fetch "JJooaa" otherwise we fetch for input
     // fetch the user that the input value holds
@@ -64,6 +68,7 @@ function App() {
     useEffect(() => {
         // is the client rendering for the first time
         if (isInitialLoad) {
+            dispatch(fetchPlaceholder());
             setIsInitialLoad(false);
             getUser();
         }
