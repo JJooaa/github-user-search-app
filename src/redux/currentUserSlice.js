@@ -16,27 +16,30 @@ export const fetchUser = createAsyncThunk(
 const initialState = {
     value: {},
     status: "idle",
-    error: "null",
 };
 
 const currentUser = createSlice({
     name: "currentUser",
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        reset: (state) => {
+            state.value = {};
+            state.status = "idle";
+        },
+    },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchUser.pending, (state, action) => {
-                state.status = "loading";
-            })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.value = { ...state.value, ...action.payload };
             })
-            .addCase(fetchUser.rejected, (state, action) => {
+            .addCase(fetchUser.rejected, (state) => {
                 state.status = "failed";
-                state.error = action.error.message;
+                state.value = {};
             });
     },
 });
+
+export const { reset } = currentUser.actions;
 
 export default currentUser.reducer;

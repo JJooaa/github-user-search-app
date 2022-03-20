@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-const Link = ({ item, index, theme }) => {
+const Link = ({ item, index }) => {
+    const theme = useSelector((state) => state.theme.value);
+
     const itemKey = Object.values(item)[0];
     const checkIfUndefined =
         itemKey === undefined || itemKey === null || itemKey === "" ? (
@@ -22,7 +25,6 @@ const Link = ({ item, index, theme }) => {
 Link.propTypes = {
     item: PropTypes.object,
     index: PropTypes.number,
-    theme: PropTypes.string,
 };
 
 export default Link;

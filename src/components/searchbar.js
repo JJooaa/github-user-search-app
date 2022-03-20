@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import search from "../assets/icon-search.svg";
-import PropTypes from "prop-types";
-import { fetchUser } from "../redux/currentUserSlice";
+import { fetchUser, reset } from "../redux/currentUserSlice";
 import { useDispatch } from "react-redux";
 
 const SearchBar = () => {
@@ -21,17 +20,18 @@ const SearchBar = () => {
                 />
             </div>
             <button
-                onClick={() => dispatch(fetchUser(input))}
+                onClick={() => {
+                    dispatch(reset());
+                    setTimeout(() => {
+                        dispatch(fetchUser(input));
+                    }, 2000);
+                }}
                 className="text-white bg-blue px-2 sm:px-6 h-[46px] hover:bg-[#60ABFF] rounded-xl"
             >
                 <p>Search</p>
             </button>
         </div>
     );
-};
-
-SearchBar.propTypes = {
-    fetchUser: PropTypes.func,
 };
 
 export default SearchBar;

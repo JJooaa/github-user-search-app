@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
+// Not currently used but the logic works if we wouldn't use redux
 export const useDarkTheme = () => {
-    const [theme, setTheme] = useState(null);
-
+    const theme = useRef("");
     useEffect(() => {
         const storageKey = "github-user-search-theme";
 
@@ -17,8 +17,8 @@ export const useDarkTheme = () => {
         } else {
             localStorage.setItem(storageKey, "light");
         }
-        setTheme(localStorage.getItem(storageKey));
+        theme.current += localStorage.getItem(storageKey);
     }, []);
 
-    return [theme, setTheme];
+    return theme;
 };

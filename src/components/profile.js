@@ -4,11 +4,10 @@ import { useSelector } from "react-redux";
 
 const Profile = () => {
     const user = useSelector((state) => state.currentUser.value);
-    
+
     const slicedState = DateTime.fromISO(user.created_at).toFormat(
         "dd LLL yyyy"
     );
-
 
     return (
         <div className="flex gap-7 items-center sm:max-w-none sm:ml-5 sm:gap-12 sm:grow sm:items-center sm:pb-0 p-4">

@@ -1,13 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import sun from "../assets/icon-sun.svg";
 import moon from "../assets/icon-moon.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { changeTheme } from "../redux/themeSlice";
 
-const Header = ({ theme, setTheme }) => {
-    // function to change the darkmode
-    const handleThemeClick = () => {
-        theme === "dark" ? setTheme("light") : setTheme("dark");
-    };
+const Header = () => {
+    const theme = useSelector((state) => state.theme.value);
+
+    const dispatch = useDispatch();
 
     const currentIcon = theme === "dark" ? sun : moon;
     const currentText = theme === "dark" ? "LIGHT" : "DARK";
@@ -19,7 +19,7 @@ const Header = ({ theme, setTheme }) => {
             </h1>
             <div
                 className="flex items-center cursor-pointer"
-                onClick={() => handleThemeClick()}
+                onClick={() => dispatch(changeTheme())}
             >
                 <h4 className="text-lightblue dark:text-darkwhite tracking-[2.5px]">
                     {currentText}
@@ -29,11 +29,6 @@ const Header = ({ theme, setTheme }) => {
             </div>
         </div>
     );
-};
-
-Header.propTypes = {
-    currentText: PropTypes.string,
-    currentIcon: PropTypes.string,
 };
 
 export default Header;
