@@ -3,6 +3,8 @@ import search from "../assets/icon-search.svg";
 import { fetchUser, reset } from "../redux/currentUserSlice";
 import { useDispatch } from "react-redux";
 
+// Search bar with Search button
+// add artificial 2 second delay to show a loading screen
 const SearchBar = () => {
     const [input, setInput] = useState("");
     const dispatch = useDispatch();

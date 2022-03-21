@@ -1,12 +1,18 @@
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
+// "Link" component. Not necessary a link but a reference to eg. twitter, blog
 const Link = ({ item, index }) => {
+    // fetch the theme from redux store
     const theme = useSelector((state) => state.theme.value);
 
-    const itemKey = Object.values(item)[0];
+    const objectValue = Object.values(item)[0];
+
+    // check if the objectKey holds a value, if not render "Not Available"
     const checkIfUndefined =
-        itemKey === undefined || itemKey === null || itemKey === "" ? (
+        objectValue === undefined ||
+        objectValue === null ||
+        objectValue === "" ? (
             <p className="text-grey">Not Available</p>
         ) : (
             <p className="text-lightblue dark:text-darkwhite overflow-hidden sm:max-w-[260px] hover:underline cursor-pointer">
@@ -22,6 +28,7 @@ const Link = ({ item, index }) => {
     );
 };
 
+// check the props passed from <LinkList /> component.
 Link.propTypes = {
     item: PropTypes.object,
     index: PropTypes.number,

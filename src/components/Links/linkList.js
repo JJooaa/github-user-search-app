@@ -5,7 +5,9 @@ import { ReactComponent as location } from "../../assets/icon-location.svg";
 import { ReactComponent as twitter } from "../../assets/icon-twitter.svg";
 import { ReactComponent as website } from "../../assets/icon-website.svg";
 
+// render <Link item={item} index={index} theme={theme} /> components in a list
 const LinkList = ({ theme }) => {
+    // fetch the necessary data from redux store
     const links = useSelector((state) => [
         { location: state.currentUser.value.location, image: location },
         { blog: state.currentUser.value.blog, image: website },

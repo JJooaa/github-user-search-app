@@ -4,11 +4,14 @@ import moon from "../assets/icon-moon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTheme } from "../redux/themeSlice";
 
+// header component, logo and theme switch
 const Header = () => {
+    // fetch the theme value from redux store 
     const theme = useSelector((state) => state.theme.value);
 
     const dispatch = useDispatch();
 
+    // check the proper icon based on the current theme 
     const currentIcon = theme === "dark" ? sun : moon;
     const currentText = theme === "dark" ? "LIGHT" : "DARK";
 

@@ -2,9 +2,11 @@ import React from "react";
 import { DateTime } from "luxon";
 import { useSelector } from "react-redux";
 
+// profile is where we find the avatar, username, register date
 const Profile = () => {
     const user = useSelector((state) => state.currentUser.value);
 
+    // use luxon library to change register date to design format
     const slicedState = DateTime.fromISO(user.created_at).toFormat(
         "dd LLL yyyy"
     );

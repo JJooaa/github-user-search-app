@@ -1,3 +1,4 @@
+// wrapper for bio, stats and links
 export const ProfileDataWrapper = ({ children }) => {
     return (
         <div className="px-6 py-4 gap-6 flex flex-col sm:self-end sm:mr-8 sm:max-w-[520px]">
@@ -5,6 +6,8 @@ export const ProfileDataWrapper = ({ children }) => {
         </div>
     );
 };
+
+// wrapper for Profile
 
 export const ProfileWrapper = ({ children }) => {
     return (

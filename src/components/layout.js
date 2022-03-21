@@ -1,6 +1,10 @@
 import { useSelector } from "react-redux";
 
+// layout for the whole page
+// if there is no user render a loading layout
+// if there is a user render the main page
 const Layout = ({ children }) => {
+    // fetch the necessary data from redux store
     const user = useSelector((state) => state.currentUser.value);
     const theme = useSelector((state) => state.theme.value);
 

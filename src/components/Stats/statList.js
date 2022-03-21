@@ -1,8 +1,9 @@
 import Stat from "./stat";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
+// render the <Stat item={item} index={index} /> components in a list
 const StatList = () => {
+    // fetch the necessary data from redux store
     const userStats = useSelector((state) => [
         { Repos: state.currentUser.value.public_repos },
         { Followers: state.currentUser.value.followers },
