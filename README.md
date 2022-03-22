@@ -37,7 +37,6 @@ Users should be able to:
 
 -   [Taildwind CSS](https://tailwindcss.com/) - CSS Utility framework
 -   [React](https://reactjs.org/) - JS library
--   [Jest](https://jestjs.io/) - JS testing library (tests coming soon)
 -   [Redux / Redux Toolkit](https://redux.js.org/) - Global State Manager
 -   Flexbox
 -   Mobile-first workflow
