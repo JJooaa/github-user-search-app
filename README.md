@@ -29,7 +29,7 @@ Users should be able to:
 ### Links
 
 -   Github Repository: [GitHub](https://github.com/JJooaa/github-user-search-app)
--   Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+-   Live Site URL: [devfinder](https://benevolent-eclair-0573d3.netlify.app/)
 
 ## My process
 
